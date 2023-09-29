@@ -6,7 +6,7 @@ import pandas as pd
 from PIL import Image
 st.write("hello")
 st.write(os.getcwd())
-model = tf.keras.models.load_model("model_herbal.h5")
+model = tf.keras.models.load_model("/leaf/model_herbal.h5")
 df = pd.read_csv("leaf_data.csv")
 header=st.container()
 
