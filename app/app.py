@@ -33,7 +33,7 @@ def display_leaf_info(predicted_class, df):
 
     if not leaf_info.empty:
 
-        sample_image_path = f"leaf/{predicted_class}.jpeg"
+        sample_image_path = f"app/leaf/{predicted_class}.jpeg"
         st.image(sample_image_path, caption=f"Sample {predicted_class} Leaf", width=300,use_column_width="never")
         st.subheader(f"Uses of {predicted_class} Leaf:")
         st.write(leaf_info['Uses'].values[0])
