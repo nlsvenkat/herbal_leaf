@@ -4,7 +4,6 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from PIL import Image
-st.write("hello")
 model = tf.keras.models.load_model("app/model_herbal.h5")
 df = pd.read_csv("app/leaf_data.csv")
 header=st.container()
