@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 st.write("hello")
-model = tf.keras.models.load_model("/leaf")
-df = pd.read_csv("leaf_data.csv")
+model = tf.keras.models.load_model("app/model_herbal.h5")
+df = pd.read_csv("app/leaf_data.csv")
 header=st.container()
 
 def preprocess_image(_image_data):
