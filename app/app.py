@@ -4,8 +4,8 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from PIL import Image
-model = tf.keras.models.load_model("./model_herbal.h5")
-df = pd.read_csv("./leaf_data.csv")
+model = tf.keras.models.load_model("app/model_herbal.h5")
+df = pd.read_csv("app/leaf_data.csv")
 header=st.container()
 
 def preprocess_image(_image_data):
@@ -32,7 +32,7 @@ def display_leaf_info(predicted_class, df):
 
     if not leaf_info.empty:
 
-        sample_image_path = f"leaf/{predicted_class}.jpeg"
+        sample_image_path = f"app/leaf/{predicted_class}.jpeg"
         st.image(sample_image_path, caption=f"Sample {predicted_class} Leaf", width=300,use_column_width="never")
         st.subheader(f"Uses of {predicted_class} Leaf:")
         st.write(leaf_info['Uses'].values[0])
