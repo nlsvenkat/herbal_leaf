@@ -67,7 +67,6 @@ with header:
             class_labels[i]=classes[i]
 
         predicted_label = class_labels.get(predicted_class, "No Class with that Number")
-        st.write(confidence_score[0])
         if (confidence_score[0] == 1):
             st.header(f"Predicted Leaf Name: {predicted_label}")
             display_leaf_info(predicted_label, df)
