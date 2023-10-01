@@ -8,10 +8,6 @@ model = tf.keras.models.load_model("app/model_herbal.h5")
 df = pd.read_csv("app/leaf_data.csv")
 header=st.container()
 
-
-confidence_score=[0]
-
-
 def preprocess_image(_image_data):
 
     img_array = tf.image.resize(_image_data, (224, 224))
@@ -25,7 +21,6 @@ def predict_label(_image_data, _model):
     img_array = preprocess_image(_image_data)
     prediction = _model.predict(img_array)
     predicted_class = np.argmax(prediction)
-    confidence_score[0] = np.max(prediction)
 
     return predicted_class
 
@@ -68,9 +63,7 @@ with header:
 
         predicted_label = class_labels.get(predicted_class, "No Class with that Number")
 
-        if (confidence_score[0] == 1):
-            st.header(f"Predicted Leaf Name: {predicted_label}")
-            display_leaf_info(predicted_label, df)
-        else:
-            st.write("Not a herbal Leaf ")
+        st.header(f"Predicted Leaf Name: {predicted_label}")
+
+        display_leaf_info(predicted_label, df)
 
