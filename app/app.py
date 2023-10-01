@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 model = tf.keras.models.load_model("app/model_herbal.h5")
-df = pd.read_csv("app/leaf_data.csv")
+df = pd.read_excel("app/leaf_data.xlsx")
 header=st.container()
 
 
