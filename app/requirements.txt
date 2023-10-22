@@ -4,4 +4,3 @@ Pillow==8.2.0
 streamlit==1.26.0
 tensorflow==2.13.0
 openpyxl
-
