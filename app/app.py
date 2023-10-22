@@ -4,6 +4,7 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from PIL import Image
+st.set_page_config(page_title="Herbal Leaf Classification", page_icon="🌿", layout="wide")
 model = tf.keras.models.load_model("app/model_herbal.h5")
 df = pd.read_excel("app/leaf_data.xlsx")
 header=st.container()
