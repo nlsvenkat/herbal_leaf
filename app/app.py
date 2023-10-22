@@ -59,18 +59,21 @@ with header:
 
     if uploaded_image is not None:
         st.image(uploaded_image, caption="Uploaded Image",width=150,use_column_width="never")
-        image = Image.open(uploaded_image)
-        predicted_class = predict_label(image, model)
-        class_labels = {}
-        classes=['Alpinia Galanga (Rasna)', 'Amaranthus Viridis (Arive-Dantu)', 'Artocarpus Heterophyllus (Jackfruit)', 'Azadirachta Indica (Neem)', 'Basella Alba (Basale)', 'Brassica Juncea (Indian Mustard)', 'Carissa Carandas (Karanda)', 'Citrus Limon (Lemon)', 'Ficus Auriculata (Roxburgh fig)', 'Ficus Religiosa (Peepal Tree)', 'Hibiscus Rosa-sinensis', 'Jasminum (Jasmine)', 'Mangifera Indica (Mango)', 'Mentha (Mint)', 'Moringa Oleifera (Drumstick)', 'Muntingia Calabura (Jamaica Cherry-Gasagase)', 'Murraya Koenigii (Curry)', 'Nerium Oleander (Oleander)', 'Nyctanthes Arbor-tristis (Parijata)', 'Ocimum Tenuiflorum (Tulsi)', 'Piper Betle (Betel)', 'Plectranthus Amboinicus (Mexican Mint)', 'Pongamia Pinnata (Indian Beech)', 'Psidium Guajava (Guava)', 'Punica Granatum (Pomegranate)', 'Santalum Album (Sandalwood)', 'Syzygium Cumini (Jamun)', 'Syzygium Jambos (Rose Apple)', 'Tabernaemontana Divaricata (Crape Jasmine)', 'Trigonella Foenum-graecum (Fenugreek)']
+        with st.spinner("Predicting..."):
+            image = Image.open(uploaded_image)
+            image = image.convert("RGB")
+            predicted_class = predict_label(image, model)
+            class_labels = {}
+            classes=['Alpinia Galanga (Rasna)', 'Amaranthus Viridis (Arive-Dantu)', 'Artocarpus Heterophyllus (Jackfruit)', 'Azadirachta Indica (Neem)', 'Basella Alba (Basale)', 'Brassica Juncea (Indian Mustard)', 'Carissa Carandas (Karanda)', 'Citrus Limon (Lemon)', 'Ficus Auriculata (Roxburgh fig)', 'Ficus Religiosa (Peepal Tree)', 'Hibiscus Rosa-sinensis', 'Jasminum (Jasmine)', 'Mangifera Indica (Mango)', 'Mentha (Mint)', 'Moringa Oleifera (Drumstick)', 'Muntingia Calabura (Jamaica Cherry-Gasagase)', 'Murraya Koenigii (Curry)', 'Nerium Oleander (Oleander)',  'Ocimum Tenuiflorum (Tulsi)', 'Piper Betle (Betel)', 'Plectranthus Amboinicus (Mexican Mint)', 'Pongamia Pinnata (Indian Beech)', 'Psidium Guajava (Guava)', 'Punica Granatum (Pomegranate)',  'Syzygium Cumini (Jamun)', 'Syzygium Jambos (Rose Apple)', 'Tabernaemontana Divaricata (Crape Jasmine)', 'Trigonella Foenum-graecum (Fenugreek)']
+            for i in range(28):
+                class_labels[i]=classes[i]
 
-        for i in range(30):
-            class_labels[i]=classes[i]
+            predicted_label = class_labels.get(predicted_class, "No Class with that Number")
+            print(predicted_label)
+            if (confidence_score[0] == 1):
 
-        predicted_label = class_labels.get(predicted_class, "No Class with that Number")
-        if (confidence_score[0] == 1):
-            st.header(f"Predicted Leaf Name: {predicted_label}")
-            display_leaf_info(predicted_label, df)
-        else:
-            st.write("Not a herbal Leaf ")
+                st.header(f"Predicted Leaf Name: {predicted_label}")
+                display_leaf_info(predicted_label, df)
+            else:
+                st.write("Not a herbal Leaf (or) the Leaf is not in our Dataset")
 
