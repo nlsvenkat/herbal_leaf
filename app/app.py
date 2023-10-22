@@ -54,7 +54,7 @@ with header:
     st.title("Herbal Leaf Classification")
     st.write("Our Project classifies the herbal image")
 
-    uploaded_image = st.file_uploader("upload image", type=["jpg", "png", "jpeg"])
+    uploaded_image = st.file_uploader("upload image", type=["jpg", "png", "jpeg","webp"])
 
 
     if uploaded_image is not None:
